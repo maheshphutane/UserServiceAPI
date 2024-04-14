@@ -1,14 +1,23 @@
 package com.example.userserviceapi.models;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
+@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User extends BaseModel{
     private String email;
     private String username;
-    private Name name;
-    private Address address;
-    private String phone;
+    private String hashedPass;
+    @ManyToMany
+    private List<Roles> rolesList;
+    private Boolean isEmailVerified;
+
 }

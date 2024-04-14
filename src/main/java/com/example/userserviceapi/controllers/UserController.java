@@ -1,6 +1,12 @@
 package com.example.userserviceapi.controllers;
 
+import com.example.userserviceapi.dtos.LoginReqDTO;
+import com.example.userserviceapi.dtos.LogoutReqDTO;
+import com.example.userserviceapi.dtos.SignUpReqDTO;
 import com.example.userserviceapi.models.User;
+import com.example.userserviceapi.services.TokenService;
+import com.example.userserviceapi.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,37 +15,20 @@ import java.util.List;
 @RequestMapping("/users")
 @RestController
 public class UserController {
-    @GetMapping("")
-    public List<User> getAllUsers(){
-        return null;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private TokenService tokenService;
+    @GetMapping("/login")
+    public ResponseEntity<User> login(@RequestBody LoginReqDTO loginReqDTO){
+        return userService.login(loginReqDTO);
     }
-
-    @GetMapping("/{id}")
-    public User getUserById(@PathVariable String id){
-        return null;
+    @PostMapping("/signup")
+    public User signUp(@RequestBody SignUpReqDTO signUpReqDTO){
+        return userService.signup(signUpReqDTO);
     }
-
-    @GetMapping()
-    public List<User> limitUsersBy(@RequestParam String limit){
-        return null;
+    @DeleteMapping("/logout")
+    public ResponseEntity<Void> logout(@RequestBody LogoutReqDTO logoutReqDTO){
+        return tokenService.logout(logoutReqDTO);
     }
-
-    @GetMapping()
-    public List<User> sortUsersBy(@RequestParam String sort){
-        return null;
-    }
-
-    @PostMapping()
-    public User addUser(@RequestBody User user){
-        return null;
-    }
-    @PatchMapping("/{id}")
-    public User updateUser(@PathVariable Long id,@RequestBody User user){
-        return null;
-    }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUserById(@PathVariable Long id){
-        return null;
-    }
-
 }
