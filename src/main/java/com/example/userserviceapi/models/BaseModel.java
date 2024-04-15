@@ -4,7 +4,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,5 +18,5 @@ public class BaseModel {
     private long id;
     private Date createdAt;
     private Date updatedAt;
-    private boolean isDeleted;
+    private boolean deleted;
 }
