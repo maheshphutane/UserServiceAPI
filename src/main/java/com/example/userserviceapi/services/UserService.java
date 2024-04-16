@@ -2,6 +2,7 @@ package com.example.userserviceapi.services;
 
 import com.example.userserviceapi.dtos.LoginReqDTO;
 import com.example.userserviceapi.dtos.SignUpReqDTO;
+import com.example.userserviceapi.dtos.UserDTO;
 import com.example.userserviceapi.models.Token;
 import com.example.userserviceapi.models.User;
 import com.example.userserviceapi.repositories.TokenRepository;
@@ -77,11 +78,23 @@ public class UserService {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    public ResponseEntity<User> validate(String token) {
+    public UserDTO validate(String token) {
         Token t = tokenRepository.findTokenByValueAndDeletedAndExpiryAtGreaterThan(token,false,new Date());
         if(t==null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return null;
         }
-        return new ResponseEntity<>(t.getUser(),HttpStatus.OK);
+        return UserToUserDTO(t.getUser());
+    }
+
+    private UserDTO UserToUserDTO(User user) {
+        if(user==null)
+            return null;
+        return UserDTO.builder()
+                .email(user.getEmail())
+                .username(user.getUsername())
+                .hashedPass(user.getHashedPass())
+                .rolesList(user.getRolesList())
+                .isEmailVerified(user.getIsEmailVerified())
+                .build();
     }
 }

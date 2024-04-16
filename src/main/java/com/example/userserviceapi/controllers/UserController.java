@@ -3,6 +3,7 @@ package com.example.userserviceapi.controllers;
 import com.example.userserviceapi.dtos.LoginReqDTO;
 import com.example.userserviceapi.dtos.LogoutReqDTO;
 import com.example.userserviceapi.dtos.SignUpReqDTO;
+import com.example.userserviceapi.dtos.UserDTO;
 import com.example.userserviceapi.models.Token;
 import com.example.userserviceapi.models.User;
 import com.example.userserviceapi.services.UserService;
@@ -28,7 +29,7 @@ public class UserController {
         return userService.logout(logoutReqDTO.getValue());
     }
     @GetMapping("/validate/{token}")
-    public ResponseEntity<User> validate(@PathVariable String token){
+    public UserDTO validate(@PathVariable String token){
         return userService.validate(token);
     }
 }
