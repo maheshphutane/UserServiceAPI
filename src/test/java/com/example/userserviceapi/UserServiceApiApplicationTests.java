@@ -1,18 +1,15 @@
 package com.example.userserviceapi;
 
-import com.example.userserviceapi.security.repositories.JpaRegisteredClientRepository;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class UserServiceApiApplicationTests {
-    @Autowired
-    private JpaRegisteredClientRepository jpaRegisteredClientRepository;
-
-    @Test
-    void contextLoads() {
-    }
+//    @Autowired
+//    private JpaRegisteredClientRepository jpaRegisteredClientRepository;
+//
+//    @Test
+//    void contextLoads() {
+//    }
 //    @Test
 //    void loadClientData(){
 //        RegisteredClient oidcClient = RegisteredClient.withId(UUID.randomUUID().toString())

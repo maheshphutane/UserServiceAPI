@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private UserService userService;
+    @GetMapping("/hello")
+    public String sayHello(){
+        return "<h1>Hello World!</h1>";
+    }
     @PostMapping("/login")
     public ResponseEntity<Token> login(@RequestBody LoginReqDTO loginReqDTO){
         return userService.login(loginReqDTO);

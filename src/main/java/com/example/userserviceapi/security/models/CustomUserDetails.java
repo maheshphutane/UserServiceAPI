@@ -1,14 +1,14 @@
 package com.example.userserviceapi.security.models;
 
 import com.example.userserviceapi.models.User;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-@JsonSerialize
+@JsonDeserialize
 public class CustomUserDetails implements UserDetails {
     private User user;
     private List<CustomGrantedAuthority> authorities;
